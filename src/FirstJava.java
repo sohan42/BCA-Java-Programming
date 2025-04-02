@@ -371,15 +371,36 @@ class Multiplication{
     double mul(double x, double y){
         return (x*y);
     }
-}
-
-public class FirstJava {
-    public static void main(String args[]){
-        Multiplication m = new Multiplication();
+    /*In main:
+    Multiplication m = new Multiplication();
         System.out.println("Product of two integers: "+m.mul(10, 20));
         System.out.println("Product of three integers: "+m.mul(10, 20, 30));
         System.out.println("Product of integers and float: "+m.mul(10, 20.50));
         System.out.println("Product of two double values: "+m.mul(20.5, 35.5));
+    */
 }
+
+/*Create a class Shape which has two functions to calculate area of circle and triangle. 
+Create functions using the concept of function overloading*/  
+class Shape{
+    public void area(float rad){
+        System.out.println("Area of circle: "+3.14*rad*rad);
+    }
+    public void area(float length, float breadth){
+        System.out.println("Area of Triangle: "+0.5*length*breadth);
+    }
+    /*In main:
+        Shape s = new Shape();
+        s.area(30.5f);
+        s.area(20.5f, 11.11f);
+    */
+}
+
+public class FirstJava {
+    public static void main(String args[]){
+        Shape s = new Shape();
+        s.area(30.5f);
+        s.area(20.5f, 11.11f);
+    }
 }
 
