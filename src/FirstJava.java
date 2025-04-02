@@ -383,6 +383,9 @@ class Multiplication{
 /*Create a class Shape which has two functions to calculate area of circle and triangle. 
 Create functions using the concept of function overloading*/  
 class Shape{
+    Shape(){ //Default constructor
+        System.out.println("Default constructor!");
+    }
     public void area(float rad){
         System.out.println("Area of circle: "+3.14*rad*rad);
     }
@@ -396,11 +399,84 @@ class Shape{
     */
 }
 
+//Program using default constructor to sum two numbers.
+class Sum{
+    private int x,y;
+    Sum(){ //default constructor
+        x=10;
+        y=20;
+    }
+    public void add(){
+        System.out.println("Sum: "+(x+y));
+    }
+    /*In main:
+        Sum s = new Sum();
+        s.add();
+    */
+}
+
+/*Create a class Box which has parameterized constructor to intialize its data members. 
+Also create a funtion volume to calculte volume of Box. */ 
+class Box1{
+    private float length,breadth,height;
+    Box1(float l, float b, float h){ //parameterized constructor
+        System.out.println("Constructing box...");
+        length = l;
+        breadth = b;
+        height = h;
+    }
+    public void volume(){
+        System.out.println("Volume of box: "+(length*breadth*height));
+    }
+    /*In main:
+        Box1 b = new Box1(20.5f,8.5f,25f);
+        b.volume();
+    */
+}
+
+/*Create a class Student, having roll_no, name, faculty as its properties. Create a set() function to set these properties
+  and getRoll(), getName(), getFaculty() functions to return roll_no, name and facilty respectively.
+*/
+class Student{
+    private int roll_no;
+    private String name, faculty;
+    
+    void set(int r, String n, String f){
+        roll_no = r;
+        name = n;
+        faculty =f;
+    }
+    int getRoll(){
+        return roll_no;
+    } 
+    String getName(){
+        return name;
+    }
+    String getFaculty(){
+        return faculty;
+    }
+    /*In main:
+        Student s = new Student();
+        Scanner sc = new Scanner(System.in);
+        int roll;
+        String name,fac;
+        System.out.println("Enter your roll no: ");
+        roll = sc.nextInt();
+        System.out.println("Enter your name: ");
+        name = sc.next();
+        System.out.println("Enter your faculty: ");
+        fac = sc.next();
+        s.set(roll,name,fac);
+        
+        System.out.println("Name: "+s.getName());
+        System.out.println("Roll no: "+s.getRoll());
+        System.out.println("Faculty: "+s.getFaculty());
+    */
+}
+
 public class FirstJava {
     public static void main(String args[]){
-        Shape s = new Shape();
-        s.area(30.5f);
-        s.area(20.5f, 11.11f);
+        
     }
 }
 
