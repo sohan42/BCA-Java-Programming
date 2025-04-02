@@ -357,20 +357,29 @@ class Box{
             }
 }
 
+//Implementation of different case of method overloading to find product of various data items.
+class Multiplication{
+    int mul(int x, int y){
+        return (x*y);
+    }
+    int mul(int x, int y, int z){
+        return(x*y*z);
+    }
+    float mul(int x, float y){
+        return (x*y);
+    }
+    double mul(double x, double y){
+        return (x*y);
+    }
+}
+
 public class FirstJava {
     public static void main(String args[]){
-        Box b = new Box();
-        System.out.println("First box: ");
-        b.setBox(100,60,120);
-        System.out.println("Area of Box: "+b.area());
-        System.out.println("Volume of Box: "+b.volume());
-        
-        
-        Box b1 = new Box();
-        System.out.println("Second box: ");
-        b1.setBox(120,50,110);
-        System.out.println("Area of Box: "+b1.area());
-        System.out.println("Volume of Box: "+b1.volume());
+        Multiplication m = new Multiplication();
+        System.out.println("Product of two integers: "+m.mul(10, 20));
+        System.out.println("Product of three integers: "+m.mul(10, 20, 30));
+        System.out.println("Product of integers and float: "+m.mul(10, 20.50));
+        System.out.println("Product of two double values: "+m.mul(20.5, 35.5));
 }
 }
 
