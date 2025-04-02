@@ -360,9 +360,17 @@ class Box{
 public class FirstJava {
     public static void main(String args[]){
         Box b = new Box();
+        System.out.println("First box: ");
         b.setBox(100,60,120);
         System.out.println("Area of Box: "+b.area());
         System.out.println("Volume of Box: "+b.volume());
+        
+        
+        Box b1 = new Box();
+        System.out.println("Second box: ");
+        b1.setBox(120,50,110);
+        System.out.println("Area of Box: "+b1.area());
+        System.out.println("Volume of Box: "+b1.volume());
 }
 }
 
