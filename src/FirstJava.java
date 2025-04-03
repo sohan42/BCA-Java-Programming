@@ -532,14 +532,39 @@ class Book{
             b2.display();
         */
 }
+//this keyword
+class Bike{
+    private float version, price;
+    private String name;
+    Bike(float version, float price, String name){
+        this.version = version; //Use 1: to invoke class instance variable
+        this.price = price; 
+        this.name = name; 
+    }
+    Bike(){
+        this(3.0f,350000.0f,"Yamaha"); //Use 2: to invoke current class constructor
+        System.out.println("Inside default constructor: ");
+        this.display(); //Use 4: to invoke current class method
+    }
+    
+    Bike get(){
+        return this; //Use 3: to return current class instance
+    }
+    void display(){
+        System.out.println("Version: "+version+" Price: "+price+" Name: "+name);
+    }
+    /*In main:
+        System.out.println("Using Parameterized constructor: ");
+        Bike b1 = new Bike(2.0f,320000.0f,"Duke"); 
+        b1.display();
+        Bike b2 =  new Bike();
+        b2.get().display();
+    */
+}
+
 public class FirstJava {
     public static void main(String args[]){
-        System.out.println("Using parameterizd constructor!");
-        Book b1 = new Book(245,"Programming in Java", "Sohan Acharya");
-        b1.display();
-        System.out.println("Using copy constructor!");
-        Book b2 = new Book(b1);
-        b2.display();
+        
     }
 }
 
