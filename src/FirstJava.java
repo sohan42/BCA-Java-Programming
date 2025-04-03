@@ -562,6 +562,30 @@ class Bike{
     */
 }
 
+//example: Static 
+class Company{
+    private int eid;
+    private static String cName;//static variable
+    Company(int eid){
+        this.eid = eid;
+    }
+    void setName(String cName){
+        this.cName = cName; 
+    }
+    void display(){
+        System.out.println("Id: "+eid+" Company name: "+cName);
+    }
+    /*In main:
+        System.out.println("Employee 1: ");
+        Company c = new Company(1);
+        c.setName("ABC");
+        c.display();
+        System.out.println("Employee 2: ");
+        Company c2 = new Company(2);
+        c2.display();
+    */
+}
+
 public class FirstJava {
     public static void main(String args[]){
         
