@@ -506,14 +506,40 @@ class Person{
     */
 } 
 
+//Copy constructor
+class Book{
+    private int id;
+    private String name, author;
+    Book(int id, String name, String author){ //Parameterized constructor
+        this.id = id;
+        this.name = name;
+        this.author = author;
+    }
+    Book(Book b1){ //Copy constructor
+        this.id = b1.id;
+        this.name = b1.name;
+        this.author = b1.author;
+    }
+        void display(){ //To display details
+        System.out.println("Id: "+id+" Name: "+name+" Author: "+author);
+    }
+        /*In main:
+            System.out.println("Using parameterizd constructor!");
+            Book b1 = new Book(245,"Programming in Java", "Sohan Acharya");
+            b1.display();
+            System.out.println("Using copy constructor!");
+            Book b2 = new Book(b1);
+            b2.display();
+        */
+}
 public class FirstJava {
     public static void main(String args[]){
-        Person p1 = new Person();//default constructor
-        p1.display();
-        Person p2 = new Person(1, "Raj"); //Constructor with 2 parameters
-        p2.display();
-        Person p3 = new Person(1, "Aman", 25); //Constructor with 3 parameters
-        p3.display();
+        System.out.println("Using parameterizd constructor!");
+        Book b1 = new Book(245,"Programming in Java", "Sohan Acharya");
+        b1.display();
+        System.out.println("Using copy constructor!");
+        Book b2 = new Book(b1);
+        b2.display();
     }
 }
 
