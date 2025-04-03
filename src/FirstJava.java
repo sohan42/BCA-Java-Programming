@@ -474,9 +474,46 @@ class Student{
     */
 }
 
+//Constrctor overloading
+class Person{
+    private int id, age;
+    private String name;
+    Person(){ //Default constructor
+        id = 0;
+        age = 0;
+        name = null;
+    }
+    Person(int id, String name){ //Parameterizd costructor having 2 parameters (int, String)
+        this.id = id;
+        this.name = name;
+        this.age = 20;
+    }
+    Person(int id, String name, int age){ //Parameterizd costructor having 3 parameters (int, String, int)
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+    void display(){ //To display all details
+        System.out.println("Id: "+id+" Name: "+name+" Age: "+age);
+    }
+    /*In main:
+        Person p1 = new Person();//default constructor
+        p1.display();
+        Person p2 = new Person(1, "Raj"); //Constructor with 2 parameters
+        p2.display();
+        Person p3 = new Person(1, "Aman", 25); //Constructor with 3 parameters
+        p3.display();
+    */
+} 
+
 public class FirstJava {
     public static void main(String args[]){
-        
+        Person p1 = new Person();//default constructor
+        p1.display();
+        Person p2 = new Person(1, "Raj"); //Constructor with 2 parameters
+        p2.display();
+        Person p3 = new Person(1, "Aman", 25); //Constructor with 3 parameters
+        p3.display();
     }
 }
 
