@@ -630,9 +630,50 @@ class StaticSum{
       System.out.println("Sum: "+StaticSum.total);
     */
 }
+
+//class to demonstrate concept of pass by value and pass by refrence;
+class Pass{
+    Pass(){}
+    
+    private int a;
+    public int b=0;
+    void incA(int x){ //increment method which take one value
+        this.a = x;
+        ++a;
+    }
+
+    void display(){
+        System.out.println("a: "+a);
+        System.out.println("b: "+b);
+    }
+    
+    Pass(int y){
+        b=y;
+    }
+    
+    void incB(Pass p){ //increment method which take one value
+        this.b = p.b;
+        ++b;
+    }
+    /*In main:
+        Pass p = new Pass(); 
+        int a=20;
+        System.out.println("Pass by value: ");
+        System.out.println("Value before call: "+a);
+        p.incA(a); //calling funtion using object
+        System.out.println("Value after call: "+a);
+        
+        Pass p1 = new Pass(10); 
+        System.out.println("Pass by reference: ");
+        System.out.println("Value before call: "+p1.b);
+        p1.incB(p1); //calling funtion using object
+        System.out.println("Value after call: "+p1.b);
+    */
+}
+
 public class FirstJava {
     public static void main(String args[]){
-        System.out.println("Sum: "+StaticSum.total);
+        
     }
 }
 
