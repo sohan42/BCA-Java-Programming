@@ -586,9 +586,46 @@ class Company{
     */
 }
 
+/*Create a College class which have three attributes to store student name, student id and college name. 
+Use static method to change college name and create seeter for other two attributes. 
+Also create a method to display all details */
+
+class College{
+    private int sid;
+    private String sName;
+    private static String cName; //static variable
+    
+    public static void ChangeCollege(){ //static funtion
+        cName = "Namuna";
+    }
+    College(int id, String name){
+        sid=id;
+        sName=name;
+    }
+    public void display(){
+        System.out.println(sid+" "+sName+" "+cName);
+    }
+    /*In main:
+        College.ChangeCollege(); //static function call
+        College c1 = new College(1, "Ram");
+        College c2 = new College(2, "Raj");
+        College c3 = new College(3, "Rajan");
+        
+        c1.display();
+        c2.display();
+        c3.display();
+    */
+}
 public class FirstJava {
     public static void main(String args[]){
+        College.ChangeCollege(); //static function call
+        College c1 = new College(1, "Ram");
+        College c2 = new College(2, "Raj");
+        College c3 = new College(3, "Rajan");
         
+        c1.display();
+        c2.display();
+        c3.display();
     }
 }
 
