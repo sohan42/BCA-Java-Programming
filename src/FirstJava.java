@@ -616,16 +616,23 @@ class College{
         c3.display();
     */
 }
+
+//Static block: WAP to perform sum of two static variables using the concept static block.
+class StaticSum{
+    private static int a=10,b=20; //static data members
+    public static int total;
+    
+    static{ //static block
+        System.out.println("Performing sum within static block...");
+        total =a+b;
+    }
+    /*In main:
+      System.out.println("Sum: "+StaticSum.total);
+    */
+}
 public class FirstJava {
     public static void main(String args[]){
-        College.ChangeCollege(); //static function call
-        College c1 = new College(1, "Ram");
-        College c2 = new College(2, "Raj");
-        College c3 = new College(3, "Rajan");
-        
-        c1.display();
-        c2.display();
-        c3.display();
+        System.out.println("Sum: "+StaticSum.total);
     }
 }
 
