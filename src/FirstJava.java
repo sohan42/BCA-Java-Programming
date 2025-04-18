@@ -1,6 +1,6 @@
 
 import java.util.Scanner;
-
+import A.*;
 /**
  *
  * @author Sohan
@@ -671,7 +671,83 @@ class Pass{
     */
 }
 
-public class FirstJava {
+//Example of member inner class
+class Outer{ //Outer class
+    int a = 10;
+    void show(){
+        Inner i = new Inner();
+        i.display();
+    }
+    class Inner{//Inner class
+        public void display(){
+            System.out.println("This is inner class");
+            System.out.println("a: "+a); //Inner class can directly access the member of outer class
+        }
+    }
+    /*In main:
+        Outer o = new Outer();
+        o.show();
+    */
+}
+
+
+//Example: Method local inner class
+class Outer1{
+    void outerMethod(){
+        System.out.println("This is outer method.");
+        
+        class Inner{ //Inner class within a method (local to method)
+            void innerMethod(){
+                System.out.println("Within a local method");
+            }
+        }
+        Inner i = new Inner();
+        i.innerMethod();
+    }
+    
+    void show(){
+        //Inner i = new Inner();//Restiricted to local method: outerMethod
+        //i.innerMethod();
+    }
+    /*In main:
+        Outer1 o = new Outer1();
+        o.outerMethod();
+    */
+}
+
+//Example: Anonymous Inner class
+abstract class Anonymous{
+    abstract void fruit();
+    /*In main:
+        Anonymous a = new Anonymous() {
+            @Override
+            void fruit() {
+                System.out.println("Apple");
+            }
+        };
+        a.fruit();
+    */
+}
+
+//Example: static inner class
+class Outer2{
+    static void outerMethod(){
+        System.out.println("Within outer class!");
+    }
+    static class Inner{
+        void innerMethod(){
+            outerMethod();
+            System.out.println("Within static inner class!");
+        }
+    }
+    /*In main:
+        Outer2.outerMethod(); // Static method call be invoke without creating an objct
+        Outer2.Inner i = new Outer2.Inner(); //We don't need to create an objct of outer class for static inner class
+        i.innerMethod();
+    */
+}
+
+public class FirstJava extends Test{
     public static void main(String args[]){
         
     }
