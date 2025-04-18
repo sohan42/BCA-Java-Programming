@@ -747,9 +747,92 @@ class Outer2{
     */
 }
 
-public class FirstJava extends Test{
+//Example: Create a program to calculate factorial of n using the concept of recursion.
+class Factorial{
+    private int result;
+    int fact(int n){
+        if(n==1){
+            return 1;
+        }
+        else{
+            result = fact(n-1)*n;
+            return result;
+        }
+    }
+    /*In main:
+        int num;
+        Factorial f = new Factorial();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number: ");
+        num = sc.nextInt();
+        System.out.println("Factorial of "+num+" is: "+f.fact(num));
+    */
+} 
+
+//Example: Single inheritance
+class Human{
+    protected String name;
+    void setName(String name){
+        this.name = name;
+    }
+}
+
+class Teacher extends Human{
+    void display(){
+        System.out.println("Name: "+name);
+    }
+    /*In main: 
+        Teacher t = new Teacher();
+        t.setName("Raj");
+        t.display();
+    */
+}   
+
+/*Create a class Number, which has two integer variables a and b, Also create setter and getter for those variables.
+ Create a sub class Arithmetic, which has 4 different functions add(), subtract(), divide() and multiply() to perform
+ addition, subtraction, division and multiplication on the two numbers of super class*/
+class Number{
+    private int a,b;
+    void setAB(int a, int b){
+        this.a = a;
+        this.b = b;
+    }
+    int getA(){
+       return a; 
+    }
+    int getB(){
+       return b; 
+    }
+}
+
+class Arithmetic extends Number{
+    int result;
+    void add(){
+        result = getA()+getB();
+        System.out.println("Sum: "+result);
+    }
+    void subtract(){
+        result = getA()-getB();
+        System.out.println("Difference: "+result);
+    }
+    void divide(){
+        result = getA()/getB();
+        System.out.println("Division: "+result);
+    }
+    void multiply(){
+        result = getA()*getB();
+        System.out.println("Product: "+result);
+    }
+}
+
+public class FirstJava extends Test{    
     public static void main(String args[]){
-        
+        Arithmetic art = new Arithmetic();
+        art.setAB(100, 10);
+        art.add();
+        art.subtract();
+        art.divide();
+        art.multiply();
     }
 }
 
