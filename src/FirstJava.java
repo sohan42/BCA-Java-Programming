@@ -1,6 +1,5 @@
 
 import java.util.Scanner;
-import A.*;
 /**
  *
  * @author Sohan
@@ -823,16 +822,155 @@ class Arithmetic extends Number{
         result = getA()*getB();
         System.out.println("Product: "+result);
     }
-}
-
-public class FirstJava extends Test{    
-    public static void main(String args[]){
+    /*In main:
         Arithmetic art = new Arithmetic();
         art.setAB(100, 10);
         art.add();
         art.subtract();
         art.divide();
         art.multiply();
+    */
+}
+
+//Example: Multi level inheritance
+class Teacher1{
+    void teach(){
+        System.out.println("Teaching subject...");
+    }
+}
+class Student1 extends Teacher1{
+    void listen(){
+        System.out.println("Listening...");
+    }
+}
+class HomeTution extends Student1{
+    void explain(){
+        System.out.println("Does homework...");
+    }
+    /*In  main:
+        HomeTution h = new HomeTution();
+        h.teach();
+        h.listen();
+        h.explain();
+    */
+}
+
+/*Create a class Vehicle which has a wheel data member, also create its setter and getter.
+Derive a class Bike which has a speed data member, also crate its setter and getter. Derive a class Yamaha from bike 
+class which has its data member version, also create its setter and getter. Create an instance of Yamaha class and invoke
+all the methods in main function.*/
+class Vehicle{
+    private int wheel;
+    public void setWheel(int w){
+        wheel =w;
+    }
+    public int getWheel(){
+        return wheel;
+    }
+}
+class Bike1 extends Vehicle{
+    private int speed;
+    public void setSpeed(int s){
+        speed =s;
+    }
+    public int getSpeed(){
+        return speed;
+    }
+}
+
+class Yamaha extends Bike1{
+    private String version;
+    public void setVersion(String v){
+        version = v;
+    }
+    public String getVersion(){
+        return version;
+    }
+    /*In main:
+        Yamaha y = new Yamaha();
+        y.setWheel(2);
+        y.setSpeed(150);
+        y.setVersion("V3");
+        System.out.println("Bike version: "+y.getVersion());
+        System.out.println("Bike Speed: "+y.getSpeed());
+        System.out.println("Bike Wheels: "+y.getWheel());
+    */
+}
+
+/*Create a class Animal which has a function eat(). Derive Bird from Animal class which has a function fly().
+Again derive a class Fish from Animal class which has a function swim().
+*/
+class Animal{
+    void eat(){
+        System.out.println("Eating food...");
+    }
+}
+class Bird extends Animal{
+    void fly(){
+        System.out.println("I am flying...");
+    }
+}
+class Fish extends Animal{
+    void swim(){
+        System.out.println("I am swiming...");
+    }
+    /*In main: 
+      Bird b =  new Bird();
+      b.eat();
+      b.fly();
+      
+      Fish f = new Fish();
+      f.eat();
+      f.swim();*/
+}
+//super keyword to access instance variable and method of parent class.
+class Animal1{
+    String color = "white";
+    void eat(){
+        System.out.println("Eating...");
+    }
+}
+class Dog extends Animal1{
+    String color ="black";
+    void printColor(){
+        System.out.println("Color: "+color); //color of Dog class
+        System.out.println("Color: "+super.color); //color of Animal1 class
+    }
+    void bark(){
+        System.out.println("barking...");
+    }  
+    void eat(){
+        System.out.println("eating bread");
+    }
+    void work(){  
+        super.eat();  
+        bark();  
+    }
+    /*In main:
+      Dog d = new Dog();
+      d.printColor();
+      d.work();
+    */
+}
+
+//super class to invok constructor of parent class
+class A{  
+    A(){ //Default constructor
+        System.out.println("A is created");
+    }  
+}  
+class B extends A{  
+    B(){  
+        super();//this is optional because compiler automatically call the parent class default constructor  
+        System.out.println("B is created");  
+  }  
+    /*In main:
+        B obj = new B();
+    */
+}  
+public class FirstJava{    
+    public static void main(String args[]){
+      
     }
 }
 
