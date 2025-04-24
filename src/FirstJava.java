@@ -968,6 +968,49 @@ class B extends A{
         B obj = new B();
     */
 }  
+
+//super keword to invoke pareameterized constructor of parent class
+class Person1{
+    int id;
+    String name;
+    Person1(int id, String name){ //parameterizd constructor
+        this.id = id;
+        this.name = name;
+    }
+}
+class Staff extends Person1{
+    float salary;
+    Staff(int id, String name, float salary){ //Invoking parent class constructor
+        super(id, name);
+        this.salary = salary;
+    }
+    void display(){
+        System.out.println("Name: "+name);
+        System.out.println("id: "+id);
+        System.out.println("Salary: "+salary);
+    }
+    /*In main:
+      Staff s = new Staff(1,"Raj",50000.00f);
+      s.display();
+    */
+}
+
+//Example: Method overriding
+class Vechile1{
+    void speed(){
+        System.out.println("Any vechile Maximum speed is 45km/hr");
+    }
+}
+class Truck extends Vechile1{
+    @Override
+    void speed(){
+        System.out.println("Truck, Maximum speed is 35km/hr");
+    }
+    /*In main:
+      Vechile1 v = new Truck(); //Using reference variable of parent class
+      v.speed();
+    */
+}
 public class FirstJava{    
     public static void main(String args[]){
       
