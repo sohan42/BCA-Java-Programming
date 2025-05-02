@@ -1,5 +1,6 @@
 
 import java.util.Scanner;
+
 /**
  *
  * @author Sohan
@@ -1011,9 +1012,95 @@ class Truck extends Vechile1{
       v.speed();
     */
 }
+
+//Example: Abstract class
+abstract class Birds{
+    abstract void fly();
+}
+
+class Eagle extends Birds{
+    @Override
+    void fly() {
+        System.out.println("I can fly high!");
+        /*In main:
+            Eagle e = new Eagle();
+            e.fly();
+        */
+    }
+}
+//Example Intrface    
+interface Drawable{  
+  void draw();  
+}  
+class Rectangle implements Drawable{  
+  @Override
+  public void draw(){
+    System.out.println("drawing rectangle");
+  }  
+}  
+class Circle implements Drawable{  
+  @Override
+  public void draw(){
+    System.out.println("drawing circle");
+  }
+    /*In main:
+          Drawable d= new Circle();
+        d.draw();
+        Drawable r= new Rectangle();
+        r.draw();  
+  */  
+}  
+
+
+//Multiple inhreitance
+interface Printable{  
+  void print();  
+}  
+interface Showable{  
+  void show();  
+}  
+class Out implements Printable,Showable{  
+  @Override
+  public void print(){
+    System.out.println("Hello");
+  }  
+  @Override
+  public void show(){
+    System.out.println("Welcome");
+  }  
+  /*In main:
+     Out o = new Out();
+     o.print();
+     o.show();
+  */
+}
+
+class ExceptionExample{
+    //Example: Arithmetic Exception handling using try-catch blocks.
+  void ArthException(){
+      Scanner sc = new Scanner(System.in);
+        int nu,de,result;
+        System.out.println("Enter Numenator: ");
+        nu = sc.nextInt();
+        System.out.println("Enter denominter: ");
+        de = sc.nextInt();
+        try{
+            result=nu/de;
+            System.out.println("Divisoin is: "+result);
+        }
+        catch(ArithmeticException e){
+            System.out.println("Exception occured: "+ e.getMessage());
+        }
+        finally{
+        System.out.println("Executed Successfully!");
+        }
+  }
+}
+
 public class FirstJava{    
     public static void main(String args[]){
-      
+          ExceptionExample obj = new ExceptionExample();
+          obj.ArthException();
     }
 }
 
