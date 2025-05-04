@@ -1078,29 +1078,97 @@ class Out implements Printable,Showable{
 class ExceptionExample{
     //Example: Arithmetic Exception handling using try-catch blocks.
   void ArthException(){
-      Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         int nu,de,result;
         System.out.println("Enter Numenator: ");
         nu = sc.nextInt();
         System.out.println("Enter denominter: ");
         de = sc.nextInt();
-        try{
+        try{ //Where proble occur
             result=nu/de;
             System.out.println("Divisoin is: "+result);
         }
-        catch(ArithmeticException e){
+        catch(ArithmeticException e){ //To handle problem
             System.out.println("Exception occured: "+ e.getMessage());
         }
         finally{
         System.out.println("Executed Successfully!");
         }
   }
+  
+  void multiCatch(){
+    try {
+            int[] numbers = {1, 2, 3};
+            System.out.println("Element at index 3: "+numbers[3]);  // This will throw an ArrayIndexOutOfBoundsException
+            int result = 10/0;  // This will throw an ArithmeticException
+            System.out.println("Division is: "+result);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("ArrayIndexOutOfBoundsException occured: " + e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println("ArithmeticException occured: " + e.getMessage());
+        }
+         finally{
+           System.out.println("Continue execution!");		
+         }
+
+  }
+  
+  void Pilpeline(){
+    try {
+            int[] numbers = {1, 2, 3};
+            System.out.println("Element at index 3: "+numbers[3]);  // This will throw an ArrayIndexOutOfBoundsException
+            int result = 10/0;  // This will throw an ArithmeticException
+            System.out.println("Division is: "+result);
+        } catch (ArrayIndexOutOfBoundsException | ArithmeticException e) {
+            System.out.println("Exception occured: " + e.getMessage());
+        }
+         finally{
+           System.out.println("Continue execution!");		
+         }
+
+  }
+  
+  void throwException(){
+      try {
+            int age;
+            Scanner sc = new Scanner(System.in);
+            age = sc.nextInt();
+            if (age < 18) {
+                throw new IllegalArgumentException("Age must be 18 or older.");
+            }
+            System.out.println("Age is valid.");
+        }
+         catch (IllegalArgumentException e) {
+            System.out.println("Caught an exception: " + e.getMessage());
+        }
+  }
+  
+  void causeException() throws Exception{
+      try {
+            divide(2, 0);
+        }
+	catch (ArithmeticException e) {
+            System.out.println("Cause of Exception: "+ e.getCause());
+        }
+    }
+  
+  void divide(int a, int b) throws Exception{
+        try {
+            int i = a / b;
+        }
+	catch (ArithmeticException e) {
+        // initializing new Exception with cause
+        ArithmeticException exe = new ArithmeticException();
+        exe.initCause(e);
+        throw(exe);
+  }
+}
 }
 
 public class FirstJava{    
-    public static void main(String args[]){
+    public static void main(String args[]) throws Exception{
           ExceptionExample obj = new ExceptionExample();
-          obj.ArthException();
+          obj.causeException();
     }
-}
+  }
 
