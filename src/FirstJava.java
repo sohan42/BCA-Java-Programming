@@ -18,7 +18,7 @@ class Literal{
     }    
 }
 
-class Conversion {
+class Conversion{
     private
         int i = 42;  
         float f = i;  
@@ -34,7 +34,6 @@ class Conversion {
             System.out.println("Int value "+x);  
         }
 }	
-
 
 class Array{
     void arrayIO(){
@@ -1165,10 +1164,98 @@ class ExceptionExample{
 }
 }
 
+/*class IFException extends Exception {
+    public IFException() {
+        super();
+    }
+    
+    public IFException(String message) {
+        super(message);
+    }
+}
+
+class BankAccount {
+    private double balance;
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    public void withdraw(double amount) throws IFException {
+        if (amount > balance) {
+            throw new IFException("Insufficient funds for withdrawal.");
+        }
+        balance -= amount;
+    }
+
+    public static void main(String[] args) {
+        BankAccount a = new BankAccount(100.0);
+        try {
+            a.withdraw(150.0);
+        } catch (IFException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}*/
+
+class MyString{
+    void check(){
+        String str = "Hello";
+        /*returns the character at the specified index
+        char ch = str.charAt(1); 
+        System.out.println(ch);*/
+        
+        //to check length of the string
+        /*int l = str.length();
+        System.out.println(l);*/
+        
+        //to create sib string
+        /*String substr = str.substring(1);
+        System.out.println(substr);*/
+        
+        /*String substr = str.substring(1,4);
+        System.out.println(substr);*/
+        
+        //to check specified pattern in string
+        /*boolean contains = str.contains("all");
+        System.out.println(contains);*/
+        
+        //to check index of char in given string
+        /*int index = str.indexOf('l'); 
+        System.out.println(index);*/
+        
+        //to check index of string pattern in given string
+        /*int index = str.indexOf("lo"); 
+        System.out.println(index);*/
+        
+        //to compare two strings
+        /*String str1 = "Hello";
+        boolean isEqual = str1.equals(str); // true
+        System.out.println(isEqual);*/
+        
+        //to compare two strings ignoring case
+        /*String str2 = "hello";
+        boolean isEqual = str.equalsIgnoreCase(str2); // true
+        System.out.println(isEqual);*/
+        
+        //to lower case
+        /*String s = str.toLowerCase();
+        System.out.println(s);*/
+        
+        //to upper case
+        /*String s = str.toUpperCase();
+        System.out.println(s);*/
+        
+        //replace character
+        String s = str.replace('l','p');
+        System.out.println(s);
+    }
+}
+
 public class FirstJava{    
     public static void main(String args[]) throws Exception{
-          ExceptionExample obj = new ExceptionExample();
-          obj.causeException();
+          MyString m = new MyString();
+          m.check();
     }
-  }
+}
 
