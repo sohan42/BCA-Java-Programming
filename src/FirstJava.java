@@ -1247,8 +1247,8 @@ class MyString{
         System.out.println(s);*/
         
         //replace character
-        String s = str.replace('l','p');
-        System.out.println(s);
+        /*String s = str.replace('l','p');
+        System.out.println(s);*/
     }
 }
 
