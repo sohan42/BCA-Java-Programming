@@ -1250,12 +1250,259 @@ class MyString{
         /*String s = str.replace('l','p');
         System.out.println(s);*/
     }
+    void concat1(){
+        String firstName = "Raju";
+        String lastName = "Bhai";
+        String fullName = firstName + " " + lastName;
+        System.out.println(fullName); 
+
+    }
+    
+    void concat2(){
+        String str1 = "Raju";
+        String str2 = " Bhai";
+        String result = str1.concat(str2);
+        System.out.println(result);
+    }
+    
+    void conversion(){
+        //string to integer
+        String str = "123";
+        int number = Integer.parseInt(str); 
+        System.out.println(number); 
+        
+        //string to double
+        String strdob = "3.14";
+        double pi = Double.parseDouble(strdob); 
+        System.out.println(pi);
+        
+        //string to boolean
+        String strbool = "true";
+        boolean flag = Boolean.parseBoolean(strbool); 
+        System.out.println(flag);
+        
+        //integer to string
+        int num = 42;
+        String intstr = String.valueOf(num);
+        System.out.println(intstr);
+        
+        //double to string
+        Double dpi = 3.14;
+        String dobstr = dpi.toString();
+        System.out.println(dobstr);
+    }
+    
+    //Program to retrieve a single character at a specified index.
+    void retriveChar(){
+      String str = "Nepal";
+      char c = str.charAt(3);
+      System.out.println(c);
+    }
+    
+    //WAP to change cases of string.
+    void changeCase(){
+        String str = "Nepal";
+        String S = str.toUpperCase();
+        String s = str.toLowerCase();
+        System.out.println("Lower case: "+s);
+        System.out.println("Upper case: "+S);
+    }
+    
+    //Program to compare two strings
+    void compare(){
+        String str1 = "Help";
+        String str2 = "help";
+        if(str1.equalsIgnoreCase(str2)){
+            System.out.println("Strings are same!");
+        }
+        else{
+            System.out.println("Strings are different!");
+        }
+    }
+    
+    //WAP to search substring from a given string.
+    void search(){
+        String str = "Hello, welcome to java class!";
+        boolean flag = str.contains("java");
+        System.out.println("Content found? "+flag);
+    }
+    
+    //Program to change/replace substring form a given string.
+    void change(){
+        String str = "Hello, welcome to java class!";
+        String changed = str.replace("java","python");
+        System.out.println(changed);
+    }
+}
+
+class MyStringBuffer{
+    //to append
+    void toAppend(){
+        StringBuffer sb = new StringBuffer("Beautiful");
+        sb.append( " Nepal");
+        System.out.println("Append: " +sb); //BeautifulNepal
+    }
+    
+    //Inserts the specified string representation into this sequence.
+    void toInsert(){
+        StringBuffer sb = new StringBuffer("Beautiful");
+        sb.insert(0, "You're ");
+        System.out.println(sb); 
+    }
+    
+    void toReplace(){
+        StringBuffer sb = new StringBuffer("Very good!");
+        sb.replace(5, 10, "lucky");
+        System.out.println(sb); 
+    }
+}
+
+//Simple thread using Thread class
+class MyThread1 extends Thread{
+        @Override
+        public void run() {
+            System.out.println("Thread " + Thread.currentThread().getName() + " is running.");
+        }
+        /*In main: 
+        MyThread1 thread = new MyThread1();
+        thread.start(); 
+        */
+}
+
+//Program to run two threads by extending Thread class.
+class MyThread2 extends Thread{
+    private String tName;
+    MyThread2(String name){
+        tName = name;
+        System.out.println("Creating "+tName);
+    }
+    
+    @Override
+    public void run(){    
+        System.out.println("Running "+tName);
+         try{
+            for(int i=1;i<4;i++){
+                System.out.println(tName+","+"Iteration: "+i);
+                Thread.sleep(50);
+            }
+        }
+         catch(InterruptedException e){
+             System.out.println(tName+"interrupted");
+        }
+        System.out.println(tName+" exiting"); 
+    }
+    /*In main:
+        MyThread2 t1 = new MyThread2("Thread-1");
+        t1.start(); 
+        MyThread2 t2 = new MyThread2("Thread-2");
+        t2.start(); 
+    */
+}
+
+//simple example of running thread by implementing Runnable interface.
+class MyThread3 implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("Runnable thread " + Thread.currentThread().getName() + " is running.");
+    }   
+}
+
+
+//Program to run two threads by implementing Runnable interface.
+class MyThread4 implements Runnable{
+    private String tName;
+    MyThread4(String name){
+        tName = name;
+        System.out.println("Creating "+tName);
+    }
+    @Override
+    public void run(){
+         try{
+            for(int i=1;i<4;i++){
+                System.out.println(tName+","+"Iteraiton: "+i);
+                Thread.sleep(50);
+            }
+        }
+         catch(InterruptedException e){
+            System.out.println("Thread:"+tName+"interrupted");
+         }
+        System.out.println(tName+" exiting");
+    }
+    /*In main:
+        MyThread4 mt1 = new MyThread4("Thread-1");
+        Thread t1 = new Thread(mt1);
+        t1.start();
+        MyThread4 mt2 = new MyThread4("Thread-2");
+        Thread t2 = new Thread(mt2);
+        t2.start();
+    */
+}
+
+//Thread priority
+class MyPriority implements Runnable {
+    private String name;
+    MyPriority(String name) {
+        this.name = name;
+    }
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(name + " iteration " + i);
+            try {
+                Thread.sleep(100); 
+            } catch (InterruptedException e) {
+                System.out.println(name + " interrupted.");
+            }
+        }
+        System.out.println(name + " finishing execution.");
+    }
+    /*In main:
+        Thread thread1 = new Thread(new MyPriority("HighPriorityThread"));
+        Thread thread2 = new Thread(new MyPriority("LowPriorityThread"));
+        
+        thread1.setPriority(Thread.MAX_PRIORITY);  // 10
+        thread2.setPriority(Thread.MIN_PRIORITY);     // 1
+        
+        thread1.start();
+        thread2.start();
+    */
+}
+
+//Program to demonstrate thread synchronization by Synchronizing a Method
+class SharedResource {
+    private int count = 0;
+    // Synchronized method to prevent race conditions
+    public synchronized void increment() {
+        count++;
+        System.out.println(Thread.currentThread().getName() + " - Count: " + count);
+ }
+    /*In main:
+     SharedResource resource = new SharedResource();
+
+        // Creating multiple threads to modify the shared resource
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 5; i++) {
+                    resource.increment();
+                }
+            }
+        }, "Thread-1");
+
+        Thread t2 = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                resource.increment();
+            }
+        }, "Thread-2");
+
+        t1.start();
+        t2.start();
+    */
 }
 
 public class FirstJava{    
-    public static void main(String args[]) throws Exception{
-          MyString m = new MyString();
-          m.check();
-    }
+    public static void main(String args[]){
+       
+   }
 }
 
