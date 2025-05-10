@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -1500,9 +1501,59 @@ class SharedResource {
     */
 }
 
+class Customer{  
+    int amount=10000;  
+  
+    synchronized void withdraw(int amount){  
+        System.out.println("going to withdraw...");  
+        if(this.amount<amount){  
+            System.out.println("Less balance; waiting for deposit...");  
+        try{
+            wait();
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }  
+    } 
+
+        if(this.amount>amount){
+            this.amount-=amount;  
+            System.out.println("withdraw completed...");  
+        }  
+}
+
+    synchronized void deposit(int amount){  
+        System.out.println("going to deposit...");  
+        this.amount+=amount;  
+        System.out.println("deposit completed... ");  
+        notify();  
+    }     
+}  
+
+
 public class FirstJava{    
     public static void main(String args[]){
-       
-   }
+        // Renaming a file
+        File oldFile = new File("example.txt");
+        File newFile = new File("New_example.txt");
+        if(oldFile.exists()) {
+            if(oldFile.renameTo(newFile)) {
+                System.out.println("File renamed to: " + newFile.getName());
+            } else {
+                System.out.println("Rename operation failed.");
+            }
+        }
+        
+        // Deleting the file
+        if(newFile.exists()) {
+            if(newFile.delete()) {
+                System.out.println("File deleted successfully.");
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+        }
+
+    }
 }
+
 
