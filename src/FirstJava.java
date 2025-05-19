@@ -1,6 +1,6 @@
 
-import java.io.File;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 /**
  *
@@ -336,7 +336,7 @@ class Car{
     }
 }
 
-/*Create a class Box which has 3 properties lenght, breadth and height.Also create setBox function(setter) to set 
+/*Create a class Box which has 3 properties lenght, breadth and height. Also create setBox function(setter) to set 
 these 3 properties. Again create two functions area and volume, which returns area and volume respectively.
 */
 class Box{
@@ -1530,29 +1530,490 @@ class Customer{
     }     
 }  
 
+class Man implements Serializable{
+    private int age;
+    private String name; 
+    public Man(){
+        
+    }
+
+    public Man(String name, int age){
+        this.age = age;
+        this.name = name;
+    }
+    String getName(){
+        return name;
+    }
+    int getAge(){
+        return age;
+    }
+}
+
+class MyIO{
+    void fileIO(){
+        try{
+            FileOutputStream fos = new FileOutputStream("example.bin");
+            // Write some bytes (for example: representing an array of numbers)
+            byte[] data = { 10, 20, 30, 40, 50 };
+            fos.write(data);
+            System.out.println("Data written to file using byte stream.");
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + e.getMessage());
+        }
+
+        // Read data from a file using FileInputStream
+        try (FileInputStream fis = new FileInputStream("example.bin")) {
+            int byteData;
+            System.out.println("Reading data using byte stream:");
+            // Reads the file byte by byte until end-of-file is reached (-1)
+            while ((byteData = fis.read()) != -1) {
+                System.out.print(byteData + " ");
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }    
+    }
+    
+    void charIO(){
+        // Write data to a file using BufferedWriter and FileWriter
+        try{ 
+            BufferedWriter bw = new BufferedWriter(new FileWriter("example.txt"));
+            bw.write("Hello, Java I/O!");
+            bw.newLine();
+            bw.write("This is an example of a character stream.");
+            System.out.println("Text written to file using character stream.");
+            bw.close();
+        } catch (IOException e) {
+            System.err.println("Error writing file: " + e.getMessage());
+        }
+
+        // Read data from a file using BufferedReader and FileReader
+        try{
+            BufferedReader br = new BufferedReader(new FileReader("example.txt"));
+            String line;
+            System.out.println("Reading text using character stream:");
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+            br.close();
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+        void scannerIO(){
+        Scanner s = new Scanner(System.in);  
+        System.out.println("Enter Name: ");
+        String name = s.nextLine();
+        System.out.println("Enter Gender: ");
+        char gender = s.next().charAt(0);
+        System.out.println("Enter Age: ");
+        int age = s.nextInt();
+        System.out.println("Enter Mobile No: ");
+        long MobileNO = s.nextLong();
+        System.out.println("Enter Annual Income: ");
+        Double AI = s.nextDouble();
+        System.out.println("Name: "+name);
+        System.out.println("Gender: "+gender);
+        System.out.println("Age: "+age);
+        System.out.println("Mobli NO: "+MobileNO);
+        System.out.println("Total: "+AI);
+    }    
+        
+        void serialize(){
+         try{  
+              //Creating the object  
+                Man m =new Man("Raj",20);  
+                //Creating stream and writing the object  
+                FileOutputStream fout=new FileOutputStream("D:\\file.txt");  
+                ObjectOutputStream out=new ObjectOutputStream(fout);  
+                out.writeObject(m);  
+                out.flush();  
+                //closing the stream  
+                out.close();  
+                System.out.println("success"); 
+         
+                FileInputStream fileIn = new FileInputStream("D:\\File.txt");
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                m = (Man) in.readObject();
+                System.out.println("Deserialized Person...");
+                System.out.println("Name: " + m.getName());
+                System.out.println("Age: " + m.getAge());
+            } catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+        }
+}
+
+class CorePackages{
+    void mWrapper(){
+        //  byte data type 
+        byte a = 1; 
+        // wrapping around Byte object 
+        Byte bobj = a; 
+  
+        int b = 10; 
+        Integer iobj = b; 
+  
+        float c = 18.6f; 
+        Float fobj = c; 
+  
+        char e='a'; 
+        Character cobj=e; 
+  
+        //  printing the values from objects 
+        System.out.println("Values of Wrapper objects (printing as objects)"); 
+        System.out.println("Byte object byteobj:  " + bobj); 
+        System.out.println("Integer object intobj:  " + iobj); 
+        System.out.println("Float object floatobj:  " + fobj);  
+        System.out.println("Character object charobj:  " + cobj); 
+  
+        // objects to data types (retrieving data types from objects) 
+        // unwrapping objects to primitive data types 
+        byte bv = bobj; 
+        int iv = iobj; 
+        float fv = fobj; 
+        char cv = cobj; 
+  
+        // printing the values from data types 
+        System.out.println("Unwrapped values (printing as data types)"); 
+        System.out.println("byte value, bv: " + bv); 
+        System.out.println("int value, iv: " + iv); 
+        System.out.println("float value, fv: " + fv); 
+        System.out.println("char value, cv: " + cv);    
+    }
+    
+    void mMath(){
+        double x = 2;
+        double y = 4;
+        System.out.println("Greater between x and y: "+ Math.max(x,y));
+        System.out.println("Square root of y is: "+ Math.sqrt(y));
+        System.out.println("power of x and y is: "+ Math.pow(x,y));
+        System.out.println("Logarithm of x is: "+ Math.log(x));
+        System.out.println("Log10 of x is: "+ Math.log10(x));
+        System.out.println("Log1p of x is: "+ Math.log1p(x));
+        System.out.println("exp of x is: "+ Math.exp(x));
+        double a = 30;
+        System.out.println("sine value of a is: "+ Math.sin(a));
+        System.out.println("cosine value of a is: "+ Math.cos(a));
+        System.out.println("Tangent value of a is: "+ Math.tan(a));
+    }
+    
+    void mNumber(){
+        Double d = Double.valueOf("6.9685"); 
+    
+        byte b = d.byteValue();  
+        short s = d.shortValue();   
+              
+        System.out.println("value of d after converting it to byte : " + b); 
+        System.out.println("value of d after converting it to short : " + s); 
+         
+        Integer i = Integer.valueOf("10"); 
+     
+        System.out.println(i.compareTo(7));  //1 shows i is greatre than 7
+        System.out.println(i.compareTo(11)); //-1 shows i is less than 11 
+        System.out.println(i.compareTo(10)); //0 shows i is equal with 10
+        
+        Integer in = Integer.valueOf("15"); 
+        Integer x = 10; 
+        System.out.println(in.equals(x));
+    }
+    
+    void mStack(){
+        Stack<String> s = new Stack<>();
+
+        s.push("Jack");
+        s.push("Queen");
+        s.push("King");
+        s.push("Ace");
+
+        System.out.println("Stack : " + s);
+        // Check if the Stack is empty
+        System.out.println("Is Stack empty? : " + s.isEmpty());
+        // Find the size of Stack
+        System.out.println("Size of Stack : " + s.size());
+        // Search for an element
+        // The search() method returns the 1-based position of the element from the top of the stack
+        // It returns -1 if the element was not found in the stack
+        int position = s.search("Queen");
+
+        if(position != -1) {
+            System.out.println("Found the element \"Queen\" at position : " + position);
+        } else {
+            System.out.println("Element not found");
+        }
+        s.pop(); 
+        System.out.println("After pop");
+        System.out.println("Stack : " + s);
+    }
+    
+    void mVector(){
+                // create default vector 
+        Vector v = new Vector(); 
+  
+        v.add(1); 
+        v.add("Nepal"); 
+        v.add(2); 
+        v.add(3, "India");  
+  
+        System.out.println("Vector is " + v);
+        v.clear();
+        System.out.println("Vector is " + v);
+    }
+    
+    void dictionary(){
+        // Creating a Hashtable (Dictionary subclass)
+        Hashtable<Integer, String> dictionary = new Hashtable<>();
+
+        // Adding key-value pairs
+        dictionary.put(1, "Apple");
+        dictionary.put(2, "Banana");
+        dictionary.put(3, "Cherry");
+
+        // Retrieving a value
+        System.out.println("Value for key 2: " + dictionary.get(2));
+
+        // Checking if a key exists
+        System.out.println("Contains key 3? " + dictionary.containsKey(3));
+
+        // Removing a key-value pair
+        dictionary.remove(1);
+        System.out.println("Dictionary after removal: " + dictionary);
+
+    }
+    
+    void mRandom(){
+        //Generates a number between 0.0 and 1.0
+        double randomValue = Math.random(); 
+        System.out.println("Random Number: " + randomValue);
+        //To generate a number in a specific range (e.g., 1 to 100):
+        int randomNum = (int) (Math.random() * 100) + 1;
+        System.out.println("Random Number (1-100): " + randomNum);
+    }
+}
+
+class mCollection{
+    void mArray(){
+        //Array declaration
+        int a[];
+        //Array instantiating
+        a = new int[4];
+        //Array literal
+        Integer[] arr = new Integer[]{1,2,3,4,5};
+        
+        a[0] = 10;
+        a[1] = 20;
+        a[2] = 30;
+        a[3] = 40;
+        
+        System.out.println("value at index 0: " + arr[0]);
+        
+        for (int i =0; i<a.length;i++)
+            System.out.println("Array at index"+i+":"+a[i]);
+    
+        int ar[][] = { {2,7,9},{3,6,1},{7,4,2} }; 
+  
+        // printing 2D array 
+        for (int i=0; i< 3 ; i++){ 
+            for (int j=0; j < 3 ; j++) 
+                System.out.print(ar[i][j] + " "); 
+                 System.out.println(); 
+        }
+    }
+    
+    void mArraylist(){
+        //declaring ArrayList with initial size n 
+       ArrayList<Integer> al = new ArrayList<>();
+  
+        // Appending the new element at the end of the list 
+        for (int i=0; i<5; i++) 
+            al.add(i); 
+       
+        // Printing elements 
+        System.out.println(al); 
+  
+        // Remove element at index 3 
+        al.remove(3); 
+  
+        // Displaying ArrayList after deletion 
+        System.out.println(al); 
+  
+        // Printing elements one by one 
+        Iterator<Integer> i = al.iterator(); 
+        while (i.hasNext()) 
+            System.out.println(i.next());
+    }
+    
+    void mMap(){
+       Map hm = new HashMap(); 
+       hm.put(1, "Nepal"); 
+       hm.put(2, "India"); 
+       hm.put(3, "China"); 
+       hm.put(4, "America"); 
+  
+       // Returns Set view      
+       Set<Map.Entry> st = hm.entrySet();    
+       //System.out.println(hm.remove(4));
+       for(Map.Entry me:st) 
+       { 
+           System.out.print(me.getKey()+":"); 
+           System.out.println(me.getValue()); 
+       } 
+       System.out.println(hm.get(1));
+    }
+    
+    void mListInterface(){
+          // Creating a list 
+        List<Integer> a1 = new ArrayList<>(); 
+        a1.add(0, 2); // adds 1 at 0 index 
+        a1.add(1, 3); // adds 2 at 1 index 
+        System.out.println("a1: "+a1); 
+  
+        // Creating another list 
+        List<Integer> a2 = new ArrayList<>(); 
+        a2.add(1); 
+        a2.add(2); 
+        a2.add(3); 
+  
+        // Will add list l2 from 1 index 
+        a1.addAll(2, a2); 
+        System.out.println("a1 after adding a2: "+a1); 
+  
+        // Removes element from index 1 
+        a1.remove(1); 
+        System.out.println("After removing index 1 element:"+a1); 
+  
+        // Prints element at index 3 
+        System.out.println("Element at index 3: "+a1.get(3)); 
+  
+        // Replace 0th element with 5 
+        a1.set(0, 5); 
+        System.out.println("After replacing 0th element with 5: "+a1); 
+        
+        ListIterator<Integer> itr = a1.listIterator();       
+        while(itr.hasNext()){         
+        System.out.println(itr.nextIndex()+":"+itr.next());  //prints index and element  
+        }
+    }
+    
+    void mSetInterface(){
+        // Set deonstration using HashSet 
+        Set<String> hs = new HashSet<String>(); 
+        hs.add("Nepal"); 
+        hs.add("India"); 
+        hs.add("Nepal"); 
+        hs.add("China"); 
+        hs.add("China"); 
+        System.out.print("Set output without the duplicates"); 
+  
+        System.out.println(hs); 
+        hs.remove("India");
+        System.out.println("After removing India:"+hs); 
+        
+        // Iterating over hash set items 
+        System.out.println("Iterating over Set:"); 
+        Iterator<String> i = hs.iterator(); 
+        while (i.hasNext()) {
+            System.out.println(i.next()); //display element
+        } 
+        
+        // Set deonstration using TreeSet 
+        System.out.print("Sorted Set after passing into TreeSet"); 
+        Set<String> ts = new TreeSet<>(hs); 
+        System.out.println(ts);
+    }
+    
+    void mTreeSet(){
+        Set<String> ts1 = new TreeSet<String>(); 
+        
+        // Elements are added using add() method 
+        ts1.add("B"); 
+        ts1.add("A"); 
+        ts1.add("C"); 
+  
+        // Duplicates will not get insert 
+        ts1.add("C"); 
+        
+        // Elements get stored in default natural 
+        // Sorting Order(Ascending) 
+        System.out.println(ts1); 
+        
+        System.out.println("Iterating over Set:"); 
+        Iterator<String> i = ts1.iterator(); 
+        while (i.hasNext()) {
+            System.out.println(i.next()); //display element
+        } 
+    }
+    
+    void mLinkedList(){
+        // Creating object of class linked list 
+        LinkedList<String> L1 = new LinkedList<String>(); 
+  
+        // Adding elements to the linked list 
+        L1.add("A"); 
+        L1.add("B"); 
+        L1.addLast("C"); //add at last
+        L1.addFirst("D"); //add at first
+        L1.add(2, "E"); //add at index 2
+        L1.add("F"); 
+        L1.add("G"); 
+        System.out.println("Linked list : " + L1); 
+  
+        // Removing elements from the linked list 
+        L1.remove("B"); 
+        L1.remove(3); 
+        L1.removeFirst(); 
+        L1.removeLast(); 
+        System.out.println("Linked list after deletion: " + L1); 
+  
+        // Finding elements in the linked list 
+        boolean status = L1.contains("E"); 
+        if(status) {
+            System.out.println("List contains the element 'E' ");
+        } else {
+            System.out.println("List doesn't contain the element 'E'");
+        } 
+ 
+        // Get and set elements from linked list 
+        System.out.println("Element returned by get() : " + L1.get(2)); 
+        L1.set(2, "Y"); 
+        System.out.println("Linked list after change : " + L1); 
+        
+        Iterator<String> i = L1.iterator(); 
+        while (i.hasNext()) {
+            System.out.println(i.next()); //displays element
+        } 
+    }
+    
+    void mHAshSet(){
+         HashSet<Integer> h = new HashSet<>(); 
+  
+        // Adding elements into HashSet usind add() 
+        h.add(1); 
+        h.add(2); 
+        h.add(3); 
+        h.add(3);// adding duplicate elements 
+  
+        // Displaying the HashSet 
+        System.out.println(h); 
+        System.out.println("List contains 5? " + h.contains(5)); 
+  
+        // Removing items from HashSet using remove() 
+        h.remove(3); 
+        System.out.println("List after removing 3:"+h); 
+  
+        // Iterating over hash set items 
+        System.out.println("Iterating over list:"); 
+        Iterator<Integer> i = h.iterator(); 
+        while (i.hasNext()) {
+            System.out.println(i.next());
+         } 
+    }
+}
 
 public class FirstJava{    
     public static void main(String args[]){
-        // Renaming a file
-        File oldFile = new File("example.txt");
-        File newFile = new File("New_example.txt");
-        if(oldFile.exists()) {
-            if(oldFile.renameTo(newFile)) {
-                System.out.println("File renamed to: " + newFile.getName());
-            } else {
-                System.out.println("Rename operation failed.");
-            }
-        }
-        
-        // Deleting the file
-        if(newFile.exists()) {
-            if(newFile.delete()) {
-                System.out.println("File deleted successfully.");
-            } else {
-                System.out.println("Failed to delete the file.");
-            }
-        }
-
+       mCollection c = new mCollection();
+       c.mHAshSet();
     }
 }
 
