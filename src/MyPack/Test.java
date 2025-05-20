@@ -3,15 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package MyPack;
-
+import MyPack.SubPack.Check7;
 /**
  *
  * @author Sohan
  */
 public class Test {
     private int a=10;
+    
     public void message(){
         System.out.println("This is a message from package A!");
+    }
+    void sum(){
+        Check7 c = new Check7();
+        System.out.println(c.add());
     }
     protected int getA(){
         return a;

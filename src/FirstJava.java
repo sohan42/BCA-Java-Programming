@@ -1,6 +1,11 @@
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.*;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -2010,10 +2015,236 @@ class mCollection{
     }
 }
 
+class MSwing{
+    void simpleApp(){
+        JFrame frame = new JFrame("JFrame Demo");  //Create a frame
+        frame.setSize(400, 200); //set Size of the frame Wxh
+        frame.setLocationRelativeTo(null); //set frame to miidle of the screen
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Frame will exit on close
+        
+        JPanel panel = new JPanel(); //Create a panel
+        panel.setLayout(new FlowLayout());
+        JLabel label = new JLabel("Click here");
+        JButton button = new JButton();
+        button.setText("Button");
+        panel.add(label);
+        panel.add(button);
+        frame.add(panel);
+        frame.setVisible(true);
+    }
+    
+    void mPanel(){
+        JFrame f= new JFrame("Panel Example");
+        f.setLocationRelativeTo(null);
+        JPanel panel=new JPanel();  
+        panel.setBounds(80,80,300,200);   //(x,y,w,h) 
+        panel.setBackground(Color.black);  
+        JButton b1=new JButton("Button 1");     
+        b1.setBackground(Color.yellow);   
+        JButton b2=new JButton("Button 2");   
+        b2.setBackground(Color.green);   
+        panel.add(b1); 
+        panel.add(b2);  
+        f.add(panel);  
+                f.setSize(400,400);    
+                f.setLayout(null);    
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.setVisible(true);    
+    }
+    
+    void mLAbel(){
+        JFrame f= new JFrame("Label Example");   
+        f.setSize(360,300);  
+        f.setLayout(null); 
+        f.setLocationRelativeTo(null);
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel p =new JPanel();
+        p.setBounds(20,20,300,200);//(x,y,w,h)
+        p.setBackground(Color.yellow);
+        f.add(p);
+        JLabel l1 = new JLabel("Welcome to My panel");  
+        p.add(l1);
+    }
+    
+    void mTextField(){
+        JFrame f= new JFrame("TextField Example");  
+        JTextField t1,t2;  
+        t1=new JTextField("Your name");  
+        t1.setBounds(50,100, 200,30);  
+        t2=new JTextField("Address");  
+        t2.setBounds(50,150, 200,30);  
+        JTextArea area=new JTextArea("About yourself");  
+        area.setBounds(50,200, 200 ,100);  
+        f.add(area);
+        f.add(t1); 
+        f.add(t2);  
+        f.setSize(400,400);  
+        f.setLayout(null);  
+        f.setLocationRelativeTo(null);
+        f.setVisible(true); 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    void mRadioButton(){
+        JFrame f=new JFrame();     
+        JRadioButton r1=new JRadioButton("Male");    
+        JRadioButton r2=new JRadioButton("Female");    
+        r1.setBounds(75,50,100,30);    
+        r2.setBounds(75,100,100,30);    
+        ButtonGroup bg=new ButtonGroup();    
+        bg.add(r1);
+        bg.add(r2);    
+        f.add(r1);
+        f.add(r2);      
+        f.setSize(300,300);    
+        f.setLayout(null); 
+        f.setLocationRelativeTo(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);    
+    }
+    
+    void mTable(){
+        JFrame f=new JFrame();    
+        String title[]={"s.n","NAME","ADDRESS"};         
+        String data[][]={ {"1","Aakash","Damak"},    
+                              {"2","Raj","Itahari"},    
+                              {"3","Priya","Dharan"}};
+        JTable t=new JTable(data,title);    
+        t.setBounds(30,40,200,300);          
+        JScrollPane s = new JScrollPane(t);    
+        f.add(s);          
+        f.setSize(300,400);    
+        f.setLocationRelativeTo(null);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setVisible(true);
+    }
+    
+    void mList(){
+        JFrame f= new JFrame();  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel l = new JLabel("Choose any country!");          
+        l.setSize(500,100);  
+        JButton b=new JButton("Show");  
+        b.setBounds(200,150,80,30);
+        
+        //b.setBorder(BorderFactory.createLineBorder(Color.black, 2, true));
+        
+        final DefaultListModel<String> l1 = new DefaultListModel<>();  
+        l1.addElement("Nepal");  
+        l1.addElement("India");  
+        l1.addElement("China");  
+        l1.addElement("U.S.A");  
+        final JList<String> list = new JList<>(l1);  
+        list.setBounds(100,100, 75,75);   
+        f.add(list); 
+        f.add(b); 
+        f.add(l);  
+        f.setSize(450,450);  
+        f.setLayout(null);  
+        f.setVisible(true); 
+          
+        b.addActionListener(new ActionListener() {  
+            @Override
+            public void actionPerformed(ActionEvent e) {   
+                String data = "";  
+                if (list.getSelectedIndex() != -1) {                       
+                    data = "Coutry Selected is: " + list.getSelectedValue();   
+                    l.setText(data);  
+                }   
+                } 
+           });   
+    }
+    
+    void mCheckbox(){
+        JFrame f= new JFrame("CheckBox");  
+        JCheckBox checkBox1 = new JCheckBox("Football");  
+        checkBox1.setBounds(100,100,100,50);  
+        JCheckBox checkBox2 = new JCheckBox("Cricket");  
+        checkBox2.setBounds(100,150,100,50);  
+        f.add(checkBox1);  
+        f.add(checkBox2);  
+        f.setSize(400,400);  
+        f.setLayout(null);
+        f.setLocationRelativeTo(null);        
+        f.setVisible(true); 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    void mComboBox(){
+        JFrame f=new JFrame("ComboBox");    
+        JTextField l = new JTextField("...");          
+        // l.setHorizontalAlignment(JTextField.CENTER);  
+        l.setSize(100,20);  
+        JButton b=new JButton("Show");  
+        b.setBounds(200,100,75,20);  
+        String city[]={"Itahari","Dharan","Kathmandu","Biratnagar","Damak"};        
+        JComboBox cb=new JComboBox(city);    
+        cb.setBounds(50,100,90,20);    
+        f.add(l);       
+        f.add(b);
+        f.add(cb);
+        f.setLayout(null);    
+        f.setSize(400,500);    
+        f.setLocationRelativeTo(null); 
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        b.addActionListener((ActionEvent e) -> {
+            String data = "My city is " + cb.getItemAt(cb.getSelectedIndex());
+            l.setText(data);  
+        });           
+    }
+    
+    void mDesktoppane(){
+        JFrame f = new JFrame();
+        f.setTitle("JInternalFrame");
+        f.setSize(700,400);
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        JDesktopPane jd = new JDesktopPane();
+        setJInternalFrame(jd,"InternalFrame1",30,30);
+        setJInternalFrame(jd,"InternalFrame2",60,60);
+        f.add(jd);
+        
+    }
+    
+    void setJInternalFrame(JDesktopPane jd,String name,int loc1,int loc2){
+        JInternalFrame jn = new JInternalFrame(name,true,true,true,true);
+        //(String title, boolean resizable, boolean closable,boolean maximizable, boolean iconifiable)
+        jn.setLayout(new FlowLayout());
+        jn.setSize(300, 300);
+        jn.add(new JButton("JButton"));
+        jn.setLocation(loc2, loc2);
+        jn.setVisible(true);
+        jd.add(jn);
+    }
+    
+    void mDialog(){
+        JFrame f = new JFrame("frame");
+        JPanel p = new JPanel(); 
+        JButton b = new JButton("click");
+        b.addActionListener( (ActionEvent e)->{
+            JDialog d = new JDialog(f, "dialog Box"); 
+            JLabel l = new JLabel("This is a dialog box"); 
+            d.add(l); 
+            d.setSize(200,200); 
+            d.setVisible(true); 
+        });
+        p.add(b); 
+        f.add(p); 
+        f.setSize(400,400); 
+        f.setVisible(true);
+        f.setLayout(null); 
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    } 
+}
+
 public class FirstJava{    
     public static void main(String args[]){
-       mCollection c = new mCollection();
-       c.mHAshSet();
+       MSwing app = new MSwing();
+       app.mDialog();
     }
 }
 
