@@ -1,4 +1,5 @@
 
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -2430,9 +2431,34 @@ class MouseEventDemo implements MouseListener{
     }  
 }
 
+//Applet demo (just for learning purpose)
+class AppletDemo extends Applet{
+    @Override
+    public void init(){
+        System.out.println("Applet initialized");
+    }
+    @Override
+    public void start(){
+        System.out.println("Applet execution started");
+    }
+    @Override
+    public void stop(){
+        System.out.println("Applet execution stopped");
+    }
+    @Override
+    public void paint(Graphics g){
+        System.out.println("Painting...");
+        g.drawString("This is applet test!", 20,10);
+    }
+    @Override
+    public void destroy(){
+        System.out.println("Applet destroyed");
+    }
+}
+
 public class FirstJava{    
     public static void main(String args[]){
-       MouseEventDemo app = new MouseEventDemo();
+       AppletDemo app = new AppletDemo();
     }   
 }
     
