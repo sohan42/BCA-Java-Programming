@@ -2,6 +2,11 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.*;
 import java.util.*;
 import java.util.List;
@@ -2238,14 +2243,197 @@ class MSwing{
         f.setVisible(true);
         f.setLayout(null); 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    } 
+    }
+    
+    void mMenu(){
+        JMenu menu, menu2, submenu;  
+          JMenuItem i1, i2, i3, i4, i5;  
+          JFrame f= new JFrame("Menu and MenuItem Demo");  
+          JMenuBar mb = new JMenuBar();
+          menu2 = new JMenu("File");
+          menu=new JMenu("Home");  
+          submenu=new JMenu("Other");  
+          i1=new JMenuItem("New");  
+          i2=new JMenuItem("Save");  
+          i3=new JMenuItem("Delete");  
+          i4=new JMenuItem("Copy");  
+          i5=new JMenuItem("Paste");  
+          menu.add(i1); menu.add(i2); menu.add(i3);  
+          submenu.add(i4); submenu.add(i5);  
+          menu.add(submenu);  
+          mb.add(menu);  
+          mb.add(menu2);
+          f.setJMenuBar(mb);  
+          f.setSize(400,400);  
+          f.setLayout(null);  
+          f.setVisible(true);  
+          f.setLocationRelativeTo(null); 
+          f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    void mBorderLayout(){
+        JFrame f=new JFrame();  
+      
+        JButton b1=new JButton("NORTH"); 
+        JButton b2=new JButton("SOUTH"); 
+        JButton b3=new JButton("EAST");  
+        JButton b4=new JButton("WEST"); 
+        JButton b5=new JButton("CENTER");  
+
+        f.add(b1,BorderLayout.NORTH);  
+        f.add(b2,BorderLayout.SOUTH);  
+        f.add(b3,BorderLayout.EAST);  
+        f.add(b4,BorderLayout.WEST);  
+        f.add(b5,BorderLayout.CENTER);  
+
+        f.setSize(300,300);  
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    void mFlowLayout(){
+        JFrame f=new JFrame();  
+
+        JButton b1=new JButton("1");  
+        JButton b2=new JButton("2");  
+        JButton b3=new JButton("3");  
+        JButton b4=new JButton("4");  
+        JButton b5=new JButton("5");  
+
+        f.add(b1);f.add(b2);f.add(b3);f.add(b4);f.add(b5);  
+
+       /*FlowLayout layout = new FlowLayout();
+          layout.setHgap(40);              
+          layout.setVgap(60);
+          f.setLayout(layout);*/
+        f.setLayout(new FlowLayout(FlowLayout.LEFT,60,10));  
+        f.setSize(300,300);  
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    void mGridLayout(){
+        JFrame f=new JFrame();  
+      
+        JButton b1=new JButton("1");     
+        JButton b2=new JButton("2");  
+        JButton b3=new JButton("3");  
+        JButton b4=new JButton("4");  
+        JButton b5=new JButton("5");  
+        JButton b6=new JButton("6");  
+
+        f.add(b1);
+        f.add(b2);
+        f.add(b3);
+        f.add(b4);
+        f.add(b5);  
+        f.add(b6);
+
+
+        f.setLayout(new GridLayout(3,2));   
+        f.setSize(300,300);  
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+}
+
+//Adpater Demo using mouse adapter
+class AdapterDemo extends MouseAdapter {  
+    JFrame f;  
+    AdapterDemo(){  
+        f=new JFrame("Mouse Motion Adapter");  
+        f.addMouseMotionListener(this);  //mouse motion listener
+        f.setSize(400,400);  
+        f.setLayout(null);  
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }  
+    
+    @Override
+    public void mouseDragged(MouseEvent e) {  
+        Graphics g = f.getGraphics();  
+        g.setColor(Color.ORANGE);  
+        //g.fillOval(e.getX(),e.getY(),25,5);
+        g.drawLine(e.getX(), e.getY(), 0, 0);
+    }  
+}
+
+//Example of key event
+class KeyEventDemo implements KeyListener{ 
+    JFrame f;
+    Label l;
+    TextArea area;
+    KeyEventDemo(){ 
+        f =new JFrame("Keyevent");
+        l=new Label();  
+        l.setBounds(20,50,100,20);  
+        area=new TextArea();  
+        area.setBounds(20,80,200, 250);  
+        area.addKeyListener(this);  
+          
+        f.add(l);f.add(area);  
+        f.setSize(300,400);  
+        f.setLayout(null);  
+        f.setVisible(true);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   }
+    @Override
+    public void keyPressed(KeyEvent e) {  
+        l.setText("Key Pressed");  
+    }  
+    @Override
+    public void keyReleased(KeyEvent e) {  
+        l.setText("Key Released");  
+    }  
+    @Override
+    public void keyTyped(KeyEvent e) {  
+        l.setText("Key Typed");  
+    }  
+}
+
+//Example of mouseListener
+class MouseEventDemo implements MouseListener{   
+     Label l;  
+     JFrame f;
+    MouseEventDemo(){    
+        f= new JFrame();  
+        l=new Label();  
+        l.setBounds(20,50,100,50); 
+        f.addMouseListener(this); 
+        
+        f.add(l); 
+        f.setSize(300,300);  
+        f.setLayout(null);  
+        f.setVisible(true);  
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }  
+     @Override
+    public void mouseClicked(MouseEvent e) {  
+       l.setText("Mouse Clicked");  
+    }  
+     @Override
+    public void mouseEntered(MouseEvent e) {  
+        l.setText("Mouse Entered");  
+    }  
+     @Override
+    public void mouseExited(MouseEvent e) {  
+        l.setText("Mouse Exited");  
+    }  
+     @Override
+    public void mousePressed(MouseEvent e) {  
+        l.setText("Mouse Pressed");  
+    }  
+     @Override
+    public void mouseReleased(MouseEvent e) {  
+        l.setText("Mouse Released");  
+    }  
 }
 
 public class FirstJava{    
     public static void main(String args[]){
-       MSwing app = new MSwing();
-       app.mDialog();
-    }
+       MouseEventDemo app = new MouseEventDemo();
+    }   
 }
-
+    
 
