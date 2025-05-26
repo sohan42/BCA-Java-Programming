@@ -10,22 +10,23 @@
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-public class DB_Insert {
+public class DB_Update {
     public static void main(String[] args) {
         try{
             String url = "jdbc:mysql://localhost:3306/mydatabase";
             String User = "root";
             String pass = "";
-            
+
             Connection con = DriverManager.getConnection(url, User, pass);
             Statement st = con.createStatement();
-            
-            String sql = "INSERT INTO student(roll_no, name, faculty) VALUES(5, 'Abhi', 'BCA')";
+            String sql = "UPDATE student SET Roll_No = 3 WHERE name = 'sujan'";
+
             st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Data is Successfully inserted");
+            JOptionPane.showMessageDialog(null, "Data is Updated");
         }
         catch(Exception e){
-            e.printStackTrace();
-        }   
-    }
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }  
 }
+
