@@ -1,5 +1,3 @@
-
-
 /**
  *
  * @author Sohan
@@ -14,7 +12,8 @@ public class CRUD_DB{
     Statement stat = null;
     public static void main(String[] args){
         CRUD_DB obj = new CRUD_DB();
-            while(true){
+        boolean flag = true; 
+            while(flag){
                 System.out.println("\n -- Choose an operation to be perform on Student table --");
                 System.out.println("1. Display record");
                 System.out.println("2. Insert ");
@@ -41,6 +40,17 @@ public class CRUD_DB{
                         System.out.println("Inserted Successfully!");
                         obj.insert(roll,name,faculty);
                         break;
+                   case 3:
+                       obj.update();
+                       break;
+                   case 4:
+                       obj.delete();
+                       break;
+                   case 5:
+                        flag = false;
+                       break;
+                   default:
+                       System.out.println("Please enter valid input!");
                 }
             }
         }
@@ -67,7 +77,8 @@ public class CRUD_DB{
                 int id = rs.getInt("id");
                 int roll_no = rs.getInt("roll_no");
                 String name = rs.getString("name");
-                System.out.println("ID: " + id + ", Name: " + name + ", Roll no: " + roll_no);
+                String faculty = rs.getString("faculty");
+                System.out.println("ID: "+id+", Name: "+name+", Faculty: "+faculty+", Roll no: "+roll_no);
             }
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -85,10 +96,38 @@ public class CRUD_DB{
     }
     
     void update(){
-        
+        try{
+            stat = statement();
+            sc = new Scanner(System.in);
+            System.out.println("Enter Roll no: ");
+            int roll = sc.nextInt();
+            sc.nextLine();
+            System.out.println("Enter name: ");
+            String name = sc.nextLine();
+            System.out.println("Enter faculty: ");
+            String faculty = sc.nextLine();
+            String sql = "UPDATE student SET name = '"+name+"', faculty = '"+faculty+"' WHERE roll_no = "+roll;
+            stat.executeUpdate(sql);
+            System.out.println("Successfully updated!");
+        }
+        catch(Exception e){
+            System.out.println("Operation failed!");
+        }
     }
     
     void delete(){
-    
+        try{
+            stat = statement();
+            sc = new Scanner(System.in);
+            System.out.println("Enter Roll no: ");
+            int roll = sc.nextInt();
+            sc.nextLine();
+            String sql = "DELETE FROM student WHERE Roll_No="+roll+"";
+            stat.executeUpdate(sql);
+            System.out.println("Successfully deleted!");
+        }
+        catch(Exception e){
+            System.out.println("Operation failed!");
+        }
     }
 }
